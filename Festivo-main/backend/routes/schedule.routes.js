@@ -1,0 +1,10 @@
+const router = require("express").Router();
+const c = require("../controllers/schedule.controller");
+const organizer = require("../middleware/role.middleware")("organizer");
+router.get("/schedule", c.listSchedule);
+router.get("/venues", c.listVenues);
+router.get("/fests", c.listFests);
+router.post("/schedule", organizer, c.createRound);
+router.put("/schedule/:id", organizer, c.updateRound);
+router.delete("/schedule/:id", organizer, c.deleteRound);
+module.exports = router;
